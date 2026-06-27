@@ -1,0 +1,44 @@
+[
+  {
+    "theme": "colere",
+    "type": "mauvaise_herbe",
+    "references": ["Jacques 1:19-20", "Proverbes 15:1", "Éphésiens 4:26-27"],
+    "idee": "La colère doit être maîtrisée, car elle peut éloigner de la paix et de la justice de Dieu.",
+    "jesus": "Jésus montre la douceur, la maîtrise de soi et le pardon."
+  },
+  {
+    "theme": "orgueil",
+    "type": "mauvaise_herbe",
+    "references": ["Proverbes 16:18", "Matthieu 23:12", "Philippiens 2:5-8"],
+    "idee": "L'orgueil pousse à se mettre au centre au lieu de laisser Dieu guider.",
+    "jesus": "Jésus montre l'humilité parfaite."
+  },
+  {
+    "theme": "peur",
+    "type": "mauvaise_herbe",
+    "references": ["Matthieu 6:25-34", "Jean 14:27", "Psaume 56:3"],
+    "idee": "La peur peut étouffer la foi, mais Dieu invite à la confiance.",
+    "jesus": "Jésus enseigne à chercher d'abord le Royaume et à faire confiance au Père."
+  },
+  {
+    "theme": "pardon",
+    "type": "bande_florale",
+    "references": ["Matthieu 6:14-15", "Luc 23:34", "Colossiens 3:13"],
+    "idee": "Le pardon libère le cœur et ouvre la voie à la paix.",
+    "jesus": "Jésus pardonne même dans la souffrance."
+  },
+  {
+    "theme": "humilite",
+    "type": "bande_florale",
+    "references": ["Matthieu 11:29", "Philippiens 2:5-8", "Jacques 4:6"],
+    "idee": "L'humilité permet de recevoir la direction de Dieu.",
+    "jesus": "Jésus est doux et humble de cœur."
+  },
+  {
+    "theme": "discipline",
+    "type": "bande_florale",
+    "references": ["1 Corinthiens 9:24-27", "Hébreux 12:11", "Proverbes 12:1"],
+    "idee": "La discipline aide à progresser et à rester fidèle.",
+    "jesus": "Jésus reste fidèle à sa mission malgré les difficultés."
+  }
+]
