@@ -87,6 +87,131 @@ def render_biblical_suggestions(title, theme):
             st.write(f"**Importance de Jésus :** {item['jesus']}")
 
 
+
+def create_storyboard(study):
+    storyboard_dir = BASE_DIR / "youtube" / "storyboards"
+    storyboard_dir.mkdir(parents=True, exist_ok=True)
+
+    filename = safe_filename(study.get("sujet", "etude")) + "-storyboard.md"
+    path = storyboard_dir / filename
+
+    content = f"""# Storyboard YouTube : {study.get('sujet', '')}
+
+## Format
+Vidéo courte ou vidéo YouTube éducative.
+
+## Objectif de la vidéo
+Aider à comprendre une mauvaise herbe spirituelle, cultiver une bande florale, et voir l'importance de Jésus.
+
+---
+
+## Scène 1 : Introduction
+
+**Texte à l'écran :**
+Quelle mauvaise herbe bloque ma croissance spirituelle ?
+
+**Voix :**
+Aujourd'hui, on parle de : {study.get('sujet', '')}.
+
+**Image / schéma :**
+Une plante qui grandit, avec une mauvaise herbe autour.
+
+---
+
+## Scène 2 : Situation
+
+**Texte à l'écran :**
+Situation ou question
+
+**Voix :**
+{study.get('situation', '')}
+
+**Image / schéma :**
+Carnet ouvert avec une note personnelle.
+
+---
+
+## Scène 3 : Mauvaise herbe
+
+**Texte à l'écran :**
+Mauvaise herbe : {study.get('mauvaise_herbe', '')}
+
+**Voix :**
+Cette mauvaise herbe peut créer un cycle mauvais : mauvaise pensée, mauvais choix, conséquence, puis éloignement spirituel.
+
+**Image / schéma :**
+Racines d'une mauvaise herbe qui étouffe une plante.
+
+---
+
+## Scène 4 : Bande florale
+
+**Texte à l'écran :**
+Bande florale : {study.get('bande_florale', '')}
+
+**Voix :**
+Cette bande florale aide à remplacer le mauvais cycle par un cycle divin : Parole de Dieu, méditation, prière, paix et croissance.
+
+**Image / schéma :**
+Fleurs autour d'un chemin lumineux.
+
+---
+
+## Scène 5 : Verset principal
+
+**Texte à l'écran :**
+{study.get('verset', '')}
+
+**Voix :**
+Ce verset nous aide à comprendre le chemin à suivre.
+
+**Image / schéma :**
+Bible ouverte avec lumière douce.
+
+---
+
+## Scène 6 : Jésus au centre
+
+**Texte à l'écran :**
+Où est Jésus dans cette étude ?
+
+**Voix :**
+{study.get('jesus', '')}
+
+**Image / schéma :**
+Un chemin centré sur Jésus, avec la lumière qui guide.
+
+---
+
+## Scène 7 : Application
+
+**Texte à l'écran :**
+Action aujourd'hui
+
+**Voix :**
+Quelle action concrète puis-je faire aujourd'hui pour enlever cette mauvaise herbe et cultiver cette bande florale ?
+
+**Image / schéma :**
+Main qui enlève une mauvaise herbe et plante une fleur.
+
+---
+
+## Scène 8 : Question finale
+
+**Texte à l'écran :**
+Quelle mauvaise herbe dois-tu enlever cette semaine ?
+
+**Voix :**
+Prends un moment pour réfléchir, écrire dans ton carnet, et avancer avec Jésus.
+
+**Image / schéma :**
+Carnet papier + jardin spirituel.
+"""
+
+    path.write_text(content, encoding="utf-8")
+    return path
+
+
 def create_youtube_script(study):
     filename = study["sujet"].lower().replace(" ", "-") + "-youtube.md"
     path = YOUTUBE_DIR / filename
