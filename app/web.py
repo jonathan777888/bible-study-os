@@ -88,6 +88,123 @@ def render_biblical_suggestions(title, theme):
 
 
 
+
+def create_youtube_short_pack(study):
+    shorts_dir = BASE_DIR / "youtube" / "shorts"
+    subtitles_dir = BASE_DIR / "youtube" / "subtitles"
+    prompts_dir = BASE_DIR / "youtube" / "prompts"
+
+    shorts_dir.mkdir(parents=True, exist_ok=True)
+    subtitles_dir.mkdir(parents=True, exist_ok=True)
+    prompts_dir.mkdir(parents=True, exist_ok=True)
+
+    base_name = safe_filename(study.get("sujet", "etude"))
+
+    short_path = shorts_dir / f"{base_name}-short.md"
+    srt_path = subtitles_dir / f"{base_name}.srt"
+    prompts_path = prompts_dir / f"{base_name}-prompts.md"
+
+    short_script = f"""# Script YouTube Shorts : {study.get('sujet', '')}
+
+## Durée visée
+45 à 60 secondes
+
+## Hook
+Quelle mauvaise herbe spirituelle bloque ta croissance ?
+
+## Script
+Aujourd'hui, on parle de : {study.get('sujet', '')}.
+
+Dans cette étude, la mauvaise herbe à surveiller est : {study.get('mauvaise_herbe', '')}.
+
+Cette mauvaise herbe peut créer un mauvais cycle :
+mauvaise pensée, mauvais choix, conséquence, puis éloignement spirituel.
+
+Mais il existe une bande florale à cultiver : {study.get('bande_florale', '')}.
+
+Cette qualité peut t'aider à revenir vers un cycle divin :
+Parole de Dieu, méditation, prière, paix et croissance.
+
+Le verset principal est : {study.get('verset', '')}.
+
+Et surtout, Jésus est au centre de cette étude :
+{study.get('jesus', '')}
+
+Question finale :
+Quelle mauvaise herbe dois-tu enlever cette semaine pour mieux suivre Jésus ?
+"""
+
+    subtitles = f"""1
+00:00:00,000 --> 00:00:04,000
+Quelle mauvaise herbe spirituelle bloque ta croissance ?
+
+2
+00:00:04,000 --> 00:00:09,000
+Aujourd'hui, on parle de : {study.get('sujet', '')}.
+
+3
+00:00:09,000 --> 00:00:15,000
+La mauvaise herbe à surveiller est : {study.get('mauvaise_herbe', '')}.
+
+4
+00:00:15,000 --> 00:00:22,000
+Elle peut créer un mauvais cycle : pensée, choix, conséquence, éloignement.
+
+5
+00:00:22,000 --> 00:00:29,000
+La bande florale à cultiver est : {study.get('bande_florale', '')}.
+
+6
+00:00:29,000 --> 00:00:36,000
+Elle aide à revenir vers la paix, la prière et la croissance spirituelle.
+
+7
+00:00:36,000 --> 00:00:43,000
+Verset principal : {study.get('verset', '')}.
+
+8
+00:00:43,000 --> 00:00:52,000
+Jésus est au centre : {study.get('jesus', '')}
+
+9
+00:00:52,000 --> 00:01:00,000
+Quelle mauvaise herbe dois-tu enlever cette semaine pour mieux suivre Jésus ?
+"""
+
+    prompts = f"""# Prompts visuels pour la vidéo : {study.get('sujet', '')}
+
+## Image 1 : Introduction
+Un carnet biblique ouvert sur une table, lumière douce, ambiance calme, style éducatif spirituel.
+
+## Image 2 : Mauvaise herbe
+Une petite plante étouffée par une mauvaise herbe, symbole de {study.get('mauvaise_herbe', '')}, style simple et clair.
+
+## Image 3 : Cycle mauvais
+Un schéma circulaire montrant : mauvaise pensée -> mauvais choix -> conséquence -> éloignement spirituel.
+
+## Image 4 : Bande florale
+Un chemin avec des fleurs lumineuses représentant {study.get('bande_florale', '')}, ambiance paisible.
+
+## Image 5 : Verset
+Une Bible ouverte avec une lumière douce, texte : {study.get('verset', '')}.
+
+## Image 6 : Jésus au centre
+Un chemin lumineux qui mène vers Jésus, avec une personne qui avance avec espoir et humilité.
+
+## Image 7 : Application
+Une main qui enlève une mauvaise herbe et plante une fleur, symbole de transformation spirituelle.
+
+## Image 8 : Question finale
+Carnet papier, stylo, jardin spirituel en arrière-plan, texte : Quelle mauvaise herbe dois-tu enlever cette semaine ?
+"""
+
+    short_path.write_text(short_script, encoding="utf-8")
+    srt_path.write_text(subtitles, encoding="utf-8")
+    prompts_path.write_text(prompts, encoding="utf-8")
+
+    return short_path, srt_path, prompts_path
+
+
 def create_storyboard(study):
     storyboard_dir = BASE_DIR / "youtube" / "storyboards"
     storyboard_dir.mkdir(parents=True, exist_ok=True)
