@@ -1,19 +1,19 @@
 # Modèle de script YouTube
 
 ## Titre
-Pourquoi cette mauvaise herbe spirituelle bloque ma croissance ?
+Quelle mauvaise herbe spirituelle bloque ma croissance ?
 
 ## Introduction
-Aujourd'hui, on va analyser une situation spirituelle avec la Bible.
+Aujourd'hui, on analyse une situation avec la Bible.
 
-## Cycle mauvais
-Décrire la mauvaise herbe.
+## Mauvaise herbe
+Décrire ce qui nuit.
 
-## Cycle divin
-Montrer la bande florale à cultiver.
+## Bande florale
+Décrire ce qui aide.
 
 ## Importance de Jésus
-Expliquer ce que Jésus enseigne et montre par son exemple.
+Montrer ce que Jésus enseigne.
 
 ## Application
-Quelle action faire aujourd'hui ?
+Une action concrète aujourd'hui.

@@ -4,10 +4,10 @@
 La colère
 
 ## Mauvaise herbe
-La colère, l'orgueil, les mauvaises pensées.
+Colère, orgueil, mauvaises pensées.
 
 ## Bande florale
-La douceur, le pardon, la prière.
+Douceur, pardon, prière.
 
-## Où est Jésus dans cette étude ?
-Jésus montre l'exemple de la douceur, du pardon et de l'obéissance à Dieu.
+## Où est Jésus ?
+Jésus montre la douceur, le pardon et l'obéissance parfaite à Dieu.

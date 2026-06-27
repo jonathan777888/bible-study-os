@@ -1,5 +1,10 @@
 # Vision du projet
 
-Bible Study OS est un logiciel d'étude biblique qui aide à lire, méditer, analyser et appliquer la Bible.
+Bible Study OS est un logiciel d'étude biblique.
 
-Le but principal est de montrer l'importance de Jésus dans chaque étude.
+Objectif :
+Lire, comprendre, méditer, voir l'importance de Jésus, appliquer et progresser.
+
+Métaphore :
+- Mauvaises herbes : ce qui nuit à ma marche avec Jésus.
+- Bandes florales : ce qui m'aide à grandir spirituellement.
