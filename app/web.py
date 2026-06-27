@@ -1,6 +1,7 @@
 import streamlit as st
 from pathlib import Path
 import json
+import unicodedata
 from datetime import datetime
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,6 +27,64 @@ def save_notes(notes):
         json.dumps(notes, ensure_ascii=False, indent=2),
         encoding="utf-8"
     )
+
+
+
+def normalize_text(value):
+    value = value.lower().strip()
+    value = unicodedata.normalize("NFD", value)
+    value = "".join(char for char in value if unicodedata.category(char) != "Mn")
+    return value
+
+
+def load_verse_library():
+    versets_file = DATA_DIR / "versets.json"
+
+    if not versets_file.exists():
+        return []
+
+    return json.loads(versets_file.read_text(encoding="utf-8"))
+
+
+def find_theme_items(query):
+    query_clean = normalize_text(query)
+
+    if not query_clean:
+        return []
+
+    results = []
+
+    for item in load_verse_library():
+        searchable_text = " ".join([
+            item.get("theme", ""),
+            item.get("type", ""),
+            item.get("idee", ""),
+            item.get("jesus", "")
+        ])
+
+        if query_clean in normalize_text(searchable_text):
+            results.append(item)
+
+    return results
+
+
+def render_biblical_suggestions(title, theme):
+    st.markdown(f"#### {title} : {theme}")
+
+    results = find_theme_items(theme)
+
+    if not results:
+        st.info("Aucune référence trouvée pour ce thème dans la bibliothèque actuelle.")
+        return
+
+    for item in results:
+        with st.expander(f"{item['theme']} - {item['type']}"):
+            st.write("**Références :**")
+            for ref in item["references"]:
+                st.write(f"- {ref}")
+
+            st.write(f"**Idée principale :** {item['idee']}")
+            st.write(f"**Importance de Jésus :** {item['jesus']}")
 
 
 def create_youtube_script(study):
