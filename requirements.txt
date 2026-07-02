@@ -1,1 +1,20 @@
-streamlit
+# Plan MVP — Bible Study OS
+
+## Priorité 1 — Restauration
+- SOS solitude / tentation
+- Prière courte
+- Une seule action immédiate
+
+## Priorité 2 — Carnet biblique
+- Créer une étude
+- Voir Jésus dans l'étude
+- Lier une mauvaise herbe à une bande florale
+
+## Priorité 3 — Jardin spirituel
+- Compter les habitudes qui reviennent
+- Voir les qualités à cultiver
+- Suivre la progression sans culpabilité excessive
+
+## Priorité 4 — Contenu
+- Générer un script YouTube
+- Transformer une étude en témoignage / enseignement

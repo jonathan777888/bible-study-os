@@ -1,0 +1,191 @@
+from __future__ import annotations
+
+import json
+from datetime import datetime
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+DATA_DIR = BASE_DIR / "data"
+YOUTUBE_DIR = BASE_DIR / "youtube" / "scripts"
+SCHEMA_DIR = BASE_DIR / "docs" / "schemas"
+NOTES_FILE = DATA_DIR / "notes.json"
+PHOTOS_FILE = DATA_DIR / "photos_carnet.txt"
+
+DATA_DIR.mkdir(exist_ok=True)
+YOUTUBE_DIR.mkdir(parents=True, exist_ok=True)
+SCHEMA_DIR.mkdir(parents=True, exist_ok=True)
+
+
+def load_notes() -> list[dict]:
+    if NOTES_FILE.exists():
+        return json.loads(NOTES_FILE.read_text(encoding="utf-8"))
+    return []
+
+
+def save_notes(notes: list[dict]) -> None:
+    NOTES_FILE.write_text(json.dumps(notes, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def slugify(text: str) -> str:
+    replacements = {"'": "", "é": "e", "è": "e", "ê": "e", "à": "a", "ç": "c", "ù": "u"}
+    text = text.lower().strip().replace(" ", "-")
+    for old, new in replacements.items():
+        text = text.replace(old, new)
+    return text or "etude"
+
+
+def create_study() -> None:
+    print("\n=== Nouvelle étude biblique ===")
+    study = {
+        "date": datetime.now().strftime("%Y-%m-%d %H:%M"),
+        "sujet": input("Sujet de l'étude : "),
+        "situation": input("Situation personnelle ou question : "),
+        "verset": input("Verset principal : "),
+        "note": input("Note / réflexion : "),
+        "mauvaise_herbe": input("Mauvaise herbe spirituelle à enlever : "),
+        "bande_florale": input("Bande florale spirituelle à cultiver : "),
+        "jesus": input("Où est Jésus dans cette étude ? "),
+        "action_1_minute": input("Action de 1 minute : "),
+    }
+    notes = load_notes()
+    notes.append(study)
+    save_notes(notes)
+    print("\nÉtude enregistrée avec succès.")
+
+
+def list_studies() -> None:
+    notes = load_notes()
+    if not notes:
+        print("\nAucune étude enregistrée pour le moment.")
+        return
+    print("\n=== Mes études bibliques ===")
+    for index, study in enumerate(notes, start=1):
+        print(f"\n{index}. {study.get('sujet', 'Sans sujet')}")
+        print(f"Date : {study.get('date', '')}")
+        print(f"Verset : {study.get('verset', '')}")
+        print(f"Mauvaise herbe : {study.get('mauvaise_herbe', '')}")
+        print(f"Bande florale : {study.get('bande_florale', '')}")
+        print(f"Jésus : {study.get('jesus', '')}")
+        print(f"Action : {study.get('action_1_minute', '')}")
+
+
+def analyze_last_study() -> None:
+    notes = load_notes()
+    if not notes:
+        print("\nAucune étude à analyser.")
+        return
+    study = notes[-1]
+    print("\n=== Analyse spirituelle ===")
+    print(f"Sujet : {study.get('sujet', '')}")
+    print(f"Situation : {study.get('situation', '')}")
+    print(f"Verset : {study.get('verset', '')}")
+    print("\nCycle mauvais possible :")
+    print(f"{study.get('mauvaise_herbe', '')} -> mauvaise pensée -> mauvais choix -> conséquence -> éloignement spirituel")
+    print("\nCycle divin opposé :")
+    print(f"Parole de Dieu -> méditation -> prière -> {study.get('bande_florale', '')} -> paix -> progrès spirituel")
+    print("\nOù est Jésus ?")
+    print(study.get("jesus", ""))
+    print("\nUne seule action :")
+    print(study.get("action_1_minute", "Faire une chose fidèle maintenant."))
+
+
+def add_paper_photo_reference() -> None:
+    photo_name = input("Nom ou chemin de la photo du carnet papier : ")
+    line = f"{datetime.now().strftime('%Y-%m-%d %H:%M')} - {photo_name}\n"
+    with PHOTOS_FILE.open("a", encoding="utf-8") as file:
+        file.write(line)
+    print("Photo référencée.")
+
+
+def generate_youtube_script() -> None:
+    notes = load_notes()
+    if not notes:
+        print("\nAucune étude disponible pour créer une vidéo.")
+        return
+    study = notes[-1]
+    filename = slugify(study.get("sujet", "etude")) + "-" + datetime.now().strftime("%Y%m%d-%H%M") + ".md"
+    path = YOUTUBE_DIR / filename
+    script = f"""# Script YouTube
+
+## Titre
+{study.get('sujet', '')}
+
+## Situation
+{study.get('situation', '')}
+
+## Verset principal
+{study.get('verset', '')}
+
+## Mauvaise herbe spirituelle
+{study.get('mauvaise_herbe', '')}
+
+## Bande florale spirituelle
+{study.get('bande_florale', '')}
+
+## Où est Jésus ?
+{study.get('jesus', '')}
+
+## Application simple
+{study.get('action_1_minute', 'Faire une seule chose fidèle maintenant.')}
+"""
+    path.write_text(script, encoding="utf-8")
+    print(f"\nScript YouTube créé : {path}")
+
+
+def generate_schema() -> None:
+    notes = load_notes()
+    if not notes:
+        print("\nAucune étude disponible pour créer un schéma.")
+        return
+    study = notes[-1]
+    filename = slugify(study.get("sujet", "etude")) + "-schema.md"
+    path = SCHEMA_DIR / filename
+    schema = f"""# Schéma spirituel : {study.get('sujet', '')}
+
+```text
+Situation: {study.get('situation', '')}
+
+Mauvaise herbe -> {study.get('mauvaise_herbe', '')}
+Bande florale  -> {study.get('bande_florale', '')}
+Jésus au centre -> {study.get('jesus', '')}
+Action simple -> {study.get('action_1_minute', '')}
+```
+"""
+    path.write_text(schema, encoding="utf-8")
+    print(f"\nSchéma créé : {path}")
+
+
+def main() -> None:
+    while True:
+        print("\n==============================")
+        print("Bible Study OS")
+        print("==============================")
+        print("1. Créer une étude biblique")
+        print("2. Voir mes études")
+        print("3. Analyser la dernière étude")
+        print("4. Ajouter une photo du carnet papier")
+        print("5. Générer un script YouTube")
+        print("6. Générer un schéma")
+        print("0. Quitter")
+        choice = input("\nChoix : ")
+        if choice == "1":
+            create_study()
+        elif choice == "2":
+            list_studies()
+        elif choice == "3":
+            analyze_last_study()
+        elif choice == "4":
+            add_paper_photo_reference()
+        elif choice == "5":
+            generate_youtube_script()
+        elif choice == "6":
+            generate_schema()
+        elif choice == "0":
+            print("À bientôt. Continue ta marche avec sagesse.")
+            break
+        else:
+            print("Choix invalide.")
+
+
+if __name__ == "__main__":
+    main()
